@@ -1,0 +1,9 @@
+<div *ngIf="!dashboards">Еще не создано ни одной доски</div>
+<div class="add-board">
+  <label for="name">Имя</label>
+  <input type="text" #name id="name">
+  <button (click)="addBoard(name.value)">Добавить</button>
+</div>
+<div *ngIf="dashboards">
+  <div class="boards" *ngFor="let board of dashboards">{{board.name}}</div>
+</div>
