@@ -10,6 +10,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {UserInfoService} from "./user-info.service";
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import {GetDashboardsService} from "./get-dashboards.service";
+import {MaterialModule} from "@angular/material";
+import {FocusModule} from "angular2-focus";
 
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
@@ -25,6 +27,8 @@ const appRoutes: Routes = [
     DashboardsComponent
   ],
   imports: [
+    FocusModule.forRoot(),
+    MaterialModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,

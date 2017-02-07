@@ -1,0 +1,11 @@
+.title {
+  text-transform: uppercase;
+  color: #cccccc;
+  font-size: 25px;
+  text-align: center;
+}
+
+.sign-in {
+  width: 30%;
+  margin: 8em auto;
+}

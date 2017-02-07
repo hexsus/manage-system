@@ -1,5 +1,16 @@
-<form (submit)="onSubmit(email.value, password.value)">
-  <input type="email" required #email>
-  <input type="password" required #password>
-  <input type="submit" placeholder="Sign-in">
-</form>
+<md-card class="sign-in">
+  <div class="card-header">
+    <h4 class="title">Регистрация</h4>
+  </div>
+
+  <form (submit)="onSubmit(email.value, password.value)">
+    <md-input-container class="full-width">
+      <input md-input type="email" placeholder="email" #email>
+    </md-input-container>
+    <md-input-container class="full-width">
+      <input md-input minlength="6" type="password" placeholder="password" #password>
+    </md-input-container>
+    <button class="full-width" md-raised-button type="submit">Регистрация</button>
+  </form>
+</md-card>
+

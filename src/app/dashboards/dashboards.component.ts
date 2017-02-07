@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetDashboardsService} from "../get-dashboards.service";
 
 @Component({
@@ -8,21 +8,37 @@ import {GetDashboardsService} from "../get-dashboards.service";
 })
 export class DashboardsComponent implements OnInit {
   private dashboards;
-  constructor(private getDashboardsService:GetDashboardsService) { }
+
+  constructor(private getDashboardsService: GetDashboardsService) {
+  }
 
   ngOnInit() {
     this.getDashboards();
   }
 
+  setChange() {
+    for (let board of this.dashboards) {
+      board.changeName = false;
+    }
+  }
+
   getDashboards() {
-    this.getDashboardsService.getDashboards().subscribe(res=>{
+    this.getDashboardsService.getDashboards().subscribe(res => {
       this.dashboards = JSON.parse(res._body).dashboards;
-      console.log(this.dashboards);
+      this.setChange();
     })
   }
 
-  addBoard(name){
-    this.getDashboardsService.addBoard(name).subscribe(res=>{
+  changed(id){
+    this.setChange();
+    let changed = this.dashboards.findIndex((dashboard) => {
+      return dashboard._id === id;
+    });
+    this.dashboards[changed].changeName = true;
+  }
+
+  addBoard(name) {
+    this.getDashboardsService.addBoard(name).subscribe(res => {
       console.log(res);
       this.getDashboards();
     })

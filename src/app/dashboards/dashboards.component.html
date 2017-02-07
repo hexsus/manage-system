@@ -1,9 +1,22 @@
 <div *ngIf="!dashboards">Еще не создано ни одной доски</div>
-<div class="add-board">
-  <label for="name">Имя</label>
-  <input type="text" #name id="name">
-  <button (click)="addBoard(name.value)">Добавить</button>
+
+<div class="boards">
+  <md-card class="dashboard">
+    <div class="add-board">
+      <md-input-container>
+        <input md-input type="text" #name placeholder="Наименование доски" id="name">
+      </md-input-container>
+      <button md-raised-button (click)="addBoard(name.value)">Добавить</button>
+    </div>
+  </md-card>
+  <div *ngIf="dashboards">
+    <md-card class="dashboard" *ngFor="let board of dashboards">
+      <span *ngIf="!board.changeName" (click)="changed(board._id)">{{board.name}}</span>
+      <md-input-container class="full-width" *ngIf="board.changeName">
+        <input md-input name="dashboardName" focus="{{board.changeName}}" [(ngModel)]="board.name"
+               placeholder="Изменить имя" type="text">
+      </md-input-container>
+    </md-card>
+  </div>
 </div>
-<div *ngIf="dashboards">
-  <div class="boards" *ngFor="let board of dashboards">{{board.name}}</div>
-</div>
+

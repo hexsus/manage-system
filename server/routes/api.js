@@ -25,6 +25,14 @@ router.post('/dashboard', authenticate, (req, res) => {
   })
 });
 
+router.patch('/dashboard/:id', (req, res) => {
+  let id = req.params.id;
+  let body = req.body.name;
+  Dashboard.findByIdAndUpdate(id, {
+    $set: body
+  })
+});
+
 //GET dashboard
 router.get('/dashboard', authenticate, (req, res) => {
 
